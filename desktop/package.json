@@ -1,0 +1,31 @@
+{
+  "name": "batch-printer",
+  "productName": "BatchPrinter",
+  "version": "0.1.0",
+  "description": "批量打印助手：右键菜单批量打印 PDF 与 Office 文档（Windows / macOS）",
+  "main": "dist/main/main.js",
+  "private": true,
+  "author": "moon",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.main.json && tsc -p tsconfig.renderer.json && node scripts/copy-assets.js",
+    "dev": "npm run build && electron .",
+    "start": "electron .",
+    "test": "npm run build && node --test \"tests/*.test.js\"",
+    "smoke": "npm run build && electron . --smoke .smoke",
+    "icon": "node scripts/make-icon.js",
+    "fetch:sumatra": "node scripts/fetch-sumatra.js",
+    "pack:mac": "npm run build && electron-builder --mac --dir",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:win": "npm run build && electron-builder --win"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}

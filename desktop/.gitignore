@@ -1,0 +1,7 @@
+node_modules/
+dist/
+release/
+.smoke/
+*.log
+.DS_Store
+vendor/sumatra/SumatraPDF.exe

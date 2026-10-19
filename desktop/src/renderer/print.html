@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>批量打印</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="print-page">
+  <header class="topbar">
+    <div class="title-block">
+      <h1>批量打印</h1>
+      <div id="file-count" class="subtitle">0 个文件</div>
+    </div>
+    <div id="summary" class="summary hidden"></div>
+  </header>
+
+  <div id="progress-wrap" class="progress-wrap hidden">
+    <div id="progress-fill" class="progress-fill"></div>
+  </div>
+
+  <div id="banner-lo" class="banner hidden">
+    <span>未检测到 LibreOffice，Office 文档无法转换打印。</span>
+    <a href="#" id="link-lo">去下载</a>
+    <label class="banner-check"><input type="checkbox" id="skip-office" checked /> 本次跳过 Office 文件</label>
+  </div>
+
+  <main id="file-list" class="list"></main>
+
+  <section class="options">
+    <div class="field field-wide">
+      <label>打印机</label>
+      <div class="row-gap">
+        <select id="printer"></select>
+        <button id="btn-refresh-printers" class="icon-btn" title="刷新打印机列表">⟳</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>份数</label>
+      <input type="number" id="copies" min="1" max="99" value="1" />
+    </div>
+    <div class="field">
+      <label>纸张</label>
+      <select id="paper">
+        <option value="default">默认</option>
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
+        <option value="Letter">Letter</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>双面</label>
+      <select id="duplex">
+        <option value="default">默认</option>
+        <option value="simplex">单面</option>
+        <option value="long">双面（长边翻页）</option>
+        <option value="short">双面（短边翻页）</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>颜色</label>
+      <select id="color">
+        <option value="default">默认</option>
+        <option value="mono">黑白</option>
+        <option value="color">彩色</option>
+      </select>
+    </div>
+    <label class="remember"><input type="checkbox" id="remember" checked /> 记住我的打印设置</label>
+  </section>
+
+  <footer class="footer">
+    <div class="status" id="status-line"></div>
+    <div class="buttons">
+      <button id="btn-cancel" class="btn ghost hidden">停止</button>
+      <button id="btn-retry" class="btn ghost hidden">重试失败</button>
+      <button id="btn-close" class="btn ghost">关闭</button>
+      <button id="btn-start" class="btn primary">开始打印</button>
+    </div>
+  </footer>
+
+  <div id="drop-overlay" class="hidden">松开以添加文件</div>
+
+  <script src="common.js"></script>
+  <script src="print.js"></script>
+</body>
+</html>
